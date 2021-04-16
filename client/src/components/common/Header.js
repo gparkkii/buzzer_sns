@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Link from 'next/link';
 
-const AppLayout = ({ children }) => {
+const Header = () => {
   return (
-    <div>
+    <>
       <Link href="/">
         <a>Buzzer</a>
       </Link>
@@ -14,13 +13,14 @@ const AppLayout = ({ children }) => {
       <Link href="/signup">
         <a>SignUp</a>
       </Link>
-      {children}
-    </div>
+      <Link href="/login">
+        <a>Login</a>
+      </Link>
+      <Link href="/logout">
+        <a>Logout</a>
+      </Link>
+    </>
   );
 };
 
-AppLayout.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
-export default AppLayout;
+export default Header;
