@@ -1,0 +1,160 @@
+/* FONT */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400;500;600;700;800&display=swap');
+@import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
+
+/* CSS RESET */
+*, ::after, ::before {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, main, menu, nav, section, summary {
+  display: block;
+}
+
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+  color: inherit;
+}
+
+a:hover {
+  color: none;
+}
+
+
+ul,
+li {
+  list-style: none;
+  margin: 0;
+}
+
+img {
+  border: 0;
+}
+
+button{
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+input{
+  text-decoration: none;
+  background-color: none;
+  outline: none;   
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  box-shadow: 0 0 0px 1000px transparent inset;
+  -webkit-transition: background-color 9999s ease-out;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+textarea {
+  resize: none;
+  border: none;
+  outline: none;
+}
+
+select {
+  background: none;
+  outline: none;
+  border-radius: 0;
+  cursor: pointer;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+/* PLACEHOLDER */
+
+input::placeholder{
+  color: #757575;
+  font-size: 14px;
+}
+
+textarea::placeholder {
+  color: #757575;
+  font-size: 14px;
+}
+
+/* COMMON */
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+::-webkit-scrollbar { display: none; }
+
+html, #root {
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+} 
+
+body{
+  background-color: #fafafa;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: 1.5;
+  margin: 0 auto;
+  letter-spacing: -0.01rem;
+  color: #212121;
+  font-family:
+    "Baloo Bhai 2",
+    "signika",
+    "Noto Sans",
+    'NanumSquareRound',
+    "Noto Sans CJK KR",
+    sans-serif;
+  word-break: keep-all;
+  word-wrap: break-word;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  transition: all 0.2s ease;
+}
+
+.ant-drawer {
+  display: block;
+}
+@media (min-width: 601px) {
+  .ant-drawer {
+    display: none;
+  }
+}
+
+.ant-drawer-body{
+  padding: 10px 24px;
+}
+
