@@ -37,11 +37,11 @@ export const StyledInput = styled.input`
   border: 1px solid #ddd;
   color: #212121;
   &:hover {
-    border: 1px solid #3F92F7;
+    border: 1px solid #3f92f7;
   }
   &:focus {
-    border: 1px solid #3F92F7;
-    box-shadow: inset 0 0 0 1px #3F92F7;
+    border: 1px solid #3f92f7;
+    box-shadow: inset 0 0 0 1px #3f92f7;
   }
 `;
 

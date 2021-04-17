@@ -8,9 +8,9 @@ export const LoginTitle = styled.div`
   text-align: center;
   color: #ff357b;
   & strong {
-    color: #4371CC;
+    color: #4371cc;
   }
-`
+`;
 
 export const SmallMessage = styled.div`
   color: #425067;
