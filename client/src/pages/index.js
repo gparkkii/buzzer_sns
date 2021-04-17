@@ -1,8 +1,7 @@
 import React from 'react';
-import AppLayout from 'components/common/AppLayout';
 
 const Home = () => {
-  return <AppLayout>Hello, Next! You are in Landing Page!</AppLayout>;
+  return <>Hello, Next! You are in Landing Page!</>;
 };
 
 export default Home;

@@ -59,7 +59,8 @@ button{
 
 input{
   text-decoration: none;
-  background-color: none;
+  background-color: transparent;
+  border-color: transparent;
   outline: none;   
 }
 
@@ -156,5 +157,24 @@ body{
 
 .ant-drawer-body{
   padding: 10px 24px;
+}
+
+.focusedLabel {
+  border: 1px solid #3F92F7 !important;
+  color: #4957a5;
+  font-weight: 500;
+}
+
+.errorInput {
+  border: 1px solid #ff357b !important;
+}
+
+.errorInput:focus {
+  border: 1px solid #ff357b !important;
+  box-shadow: inset 0 0 0 0.5px #ff357b !important;
+}
+
+.errorTypeLabel {
+  color: #ff357b !important;
 }
 

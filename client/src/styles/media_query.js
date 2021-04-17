@@ -2,12 +2,12 @@ import { css } from 'styled-components';
 
 export const media = {
   mobile: (...args) => css`
-    @media (min-width: 361px) {
+    @media (min-width: 360px) {
       ${css(...args)}
     }
   `,
   tablet: (...args) => css`
-    @media (min-width: 601px) {
+    @media (min-width: 600px) {
       ${css(...args)}
     }
   `,

@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useCallback, useState } from 'react';
 import { media } from 'styles/media_query';
 import styled from 'styled-components';
