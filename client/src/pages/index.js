@@ -1,7 +1,27 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import AppLayout from 'components/Common/AppLayout';
+import PostForm from 'components/Post/PostForm';
+import PostCard from 'components/Post/PostCard';
+import { RowWrapper, SideWrapper, ContentWrapper } from 'styles/wrapper';
 
 const Home = () => {
-  return <>Hello, Next! You are in Landing Page!</>;
+  const { isLoggedIn } = useSelector(state => state.user);
+  const { mainPosts } = useSelector(state => state.post);
+
+  return (
+    <AppLayout>
+      <RowWrapper>
+        <SideWrapper />
+        <ContentWrapper>
+          {isLoggedIn && <PostForm />}
+          {mainPosts?.map(post => {
+            return <PostCard key={post.id} post={post} />;
+          })}
+        </ContentWrapper>
+      </RowWrapper>
+    </AppLayout>
+  );
 };
 
 export default Home;
