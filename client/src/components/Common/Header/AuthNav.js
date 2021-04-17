@@ -1,21 +1,24 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutAction } from 'reducers/user';
 import { media } from 'styles/media_query';
-import styled from 'styled-components';
+import Router from 'next/router';
 import Link from 'next/link';
+import styled from 'styled-components';
 
 const AuthNav = () => {
-  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(state => state.user.isLoggedIn);
 
-  const onClick = useCallback(() => {
-    setisLoggedIn(!isLoggedIn);
-  }, [isLoggedIn]);
+  const onLogout = useCallback(() => {
+    dispatch(logoutAction);
+    Router.push('/login');
+  }, []);
 
   return (
     <>
       <NavBox>
-        {isLoggedIn ? (
+        {!isLoggedIn ? (
           <>
             <li>
               <Link href="/signup">
@@ -24,7 +27,7 @@ const AuthNav = () => {
             </li>
             <li>
               <Link href="/login">
-                <a onClick={onClick}>로그인</a>
+                <a>로그인</a>
               </Link>
             </li>
           </>
@@ -36,7 +39,9 @@ const AuthNav = () => {
               </Link>
             </li>
             <li>
-              <div onClick={onClick}>로그아웃</div>
+              <button type="button" onClick={onLogout}>
+                로그아웃
+              </button>
             </li>
           </>
         )}

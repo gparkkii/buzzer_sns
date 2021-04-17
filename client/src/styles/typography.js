@@ -6,6 +6,7 @@ export const LoginTitle = styled.div`
   font-size: 48px;
   font-weight: 700;
   text-align: center;
+  line-height: 1.2;
   color: #ff357b;
   & strong {
     color: #4371cc;

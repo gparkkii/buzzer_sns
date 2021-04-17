@@ -51,7 +51,7 @@ const SignUp = () => {
       <FlexWrapper>
         <FormBox onSubmit={handleSubmit(onSubmit)}>
           <LoginTitle>
-            Welcome to,
+            Welcome to
             <strong> buzzer!</strong>
           </LoginTitle>
           <InputBox>

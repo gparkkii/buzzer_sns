@@ -1,6 +1,9 @@
 import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { loginAction } from 'reducers/user';
 import Head from 'next/head';
 import Link from 'next/link';
+import Router from 'next/router';
 import { useForm } from 'react-hook-form';
 import { PasswordError, EmailError } from 'library/options/errors';
 import { EyeInvisibleTwoTone, EyeTwoTone } from '@ant-design/icons';
@@ -16,6 +19,7 @@ import {
 } from 'styles/form';
 
 const LogIn = () => {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -32,6 +36,8 @@ const LogIn = () => {
 
   const onSubmit = useCallback(user => {
     console.log(user);
+    dispatch(loginAction({ user }));
+    Router.push('/');
   }, []);
 
   return (
