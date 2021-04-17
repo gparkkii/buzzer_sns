@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { media } from 'styles/media_query';
+import { MainWrapper } from 'styles/wrapper';
 import Header from './Header/Header';
 
 const AppLayout = ({ children }) => {
   return (
     <>
       <Header />
-      <Wrapper>{children}</Wrapper>
+      <MainWrapper>{children}</MainWrapper>
     </>
   );
 };
@@ -18,13 +17,3 @@ AppLayout.propTypes = {
 };
 
 export default AppLayout;
-
-const Wrapper = styled.main`
-  margin: 0 auto;
-  width: 100%;
-  padding: 40px;
-  transition: all 0.2s ease;
-  ${media.desktop`
-    width: 1200px;
-  `}
-`;

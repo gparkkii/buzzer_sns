@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import UserProfile from 'components/Profile/UserProfile';
+import UserProfile from 'components/UserProfile';
 
 const profile = () => {
   return (

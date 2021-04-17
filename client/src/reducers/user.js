@@ -42,7 +42,7 @@ const dummyUser = {
 
 const initialState = {
   isLoggedIn: false,
-  user: null,
+  user: {},
   signUpData: {},
   loginData: {},
 };
@@ -61,7 +61,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: false,
-        user: null,
+        user: {},
       };
     }
     case SIGN_UP: {

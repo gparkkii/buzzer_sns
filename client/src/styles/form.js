@@ -7,7 +7,7 @@ export const FormBox = styled.div`
   transition: all 0.2s ease;
   ${media.tablet`
     border: 1px solid #eaeaea;
-    border-radius: 12px;
+    border-radius: 20px;
     padding: 60px;
     width: 32em;
   `}

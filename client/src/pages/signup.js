@@ -1,9 +1,15 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import Router from 'next/router';
 import { useForm } from 'react-hook-form';
 import { FlexWrapper } from 'styles/wrapper';
-import { ErrorMessage, LoginTitle, InputAlert } from 'styles/typography';
+import {
+  ErrorMessage,
+  LoginTitle,
+  InputAlert,
+  SmallMessage,
+} from 'styles/typography';
 import { EyeInvisibleTwoTone, EyeTwoTone } from '@ant-design/icons';
 import {
   NameError,
@@ -41,6 +47,7 @@ const SignUp = () => {
 
   const onSubmit = useCallback(user => {
     console.log(user);
+    Router.push('/login');
   }, []);
 
   return (
@@ -195,6 +202,12 @@ const SignUp = () => {
           <StyledButton type="submit" onClick={handleSubmit(onSubmit)}>
             회원가입
           </StyledButton>
+          <SmallMessage>
+            <span>이미 계정이 있으신가요?</span>
+            <Link href="/login">
+              <a>로그인</a>
+            </Link>
+          </SmallMessage>
         </FormBox>
       </FlexWrapper>
     </>

@@ -17,22 +17,24 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <CommonNav />
-      <DesktopMenu>
-        <AuthNav />
-      </DesktopMenu>
-      <TabletMenu>
-        <Button shape="circle" icon={<MenuOutlined />} onClick={showDrawer} />
-        <Drawer
-          title="auth drawer"
-          placement="right"
-          closable={false}
-          onClose={onClose}
-          visible={visible}
-        >
+      <Headerbox>
+        <CommonNav />
+        <DesktopMenu>
           <AuthNav />
-        </Drawer>
-      </TabletMenu>
+        </DesktopMenu>
+        <TabletMenu>
+          <Button shape="circle" icon={<MenuOutlined />} onClick={showDrawer} />
+          <Drawer
+            title="auth drawer"
+            placement="right"
+            closable={false}
+            onClose={onClose}
+            visible={visible}
+          >
+            <AuthNav />
+          </Drawer>
+        </TabletMenu>
+      </Headerbox>
     </StyledHeader>
   );
 };
@@ -41,14 +43,26 @@ export default Header;
 
 const StyledHeader = styled.header`
   width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid #eaeaea;
+`;
+
+const Headerbox = styled.nav`
+  width: 100%;
   height: 60px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 28px;
-  background-color: #fff;
-  border-bottom: 1px solid #eaeaea;
+  padding: 0px 40px;
+  margin: 0 auto;
+  ${media.tablet`
+    padding: 0px 60px;
+  `}
+  ${media.desktop`
+    width: 1200px;
+    padding: 0px 60px;
+  `}
 `;
 
 const DesktopMenu = styled.nav`

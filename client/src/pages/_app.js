@@ -1,7 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import Head from 'next/head';
-import AppLayout from 'components/Common/AppLayout';
 import Wrapper from '../store/configureStore';
 import 'antd/dist/antd.css';
 import 'styles/index.css';
@@ -14,9 +13,7 @@ const App = ({ Component }) => {
         <title>Buzzer</title>
         <link rel="icon" type="image/x-icon" href="/icon/favicon.png" />
       </Head>
-      <AppLayout>
-        <Component />
-      </AppLayout>
+      <Component />
     </>
   );
 };
