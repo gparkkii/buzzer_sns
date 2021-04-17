@@ -9,8 +9,9 @@ const App = ({ Component }) => {
   return (
     <>
       <Head>
-        <meta charset="utf-8" />
+        <meta charSet="utf-8" />
         <title>Buzzer</title>
+        <link rel="icon" type="image/x-icon" href="/icon/favicon.png" />
       </Head>
       <AppLayout>
         <Component />

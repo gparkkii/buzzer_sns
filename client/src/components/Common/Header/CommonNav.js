@@ -9,11 +9,11 @@ const CommonNav = () => {
       <NavBox>
         <li>
           <Link href="/">
-            <a>Buzzer</a>
+            <Logo src="/images/logo.png" alt="logo" />
           </Link>
         </li>
         <li>
-          <Input.Search enterButton />
+          <Input.Search />
         </li>
       </NavBox>
     </nav>
@@ -32,4 +32,9 @@ const NavBox = styled.ul`
   & li {
     margin-right: 28px;
   }
+`;
+
+const Logo = styled.img`
+  height: 48px;
+  vertical-align: middle;
 `;
