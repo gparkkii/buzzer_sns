@@ -62,7 +62,7 @@ export const PostContentBox = styled.div`
   min-height: 80px;
 `;
 
-export const PostContent = styled.div`
+export const PostContents = styled.div`
   padding: 20px;
   width: 100%;
   text-align: left;
@@ -193,4 +193,11 @@ export const ListBox = styled.div`
 export const StyledList = styled.li`
   padding: 0px 20px;
   border-top: 1px solid #ddd;
+`;
+
+export const HashTag = styled.a`
+  color: #4371cc;
+  &:hover {
+    color: #3f92f7;
+  }
 `;

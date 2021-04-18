@@ -33,11 +33,6 @@ a {
   color: inherit;
 }
 
-a:hover {
-  color: none;
-}
-
-
 ul,
 li {
   list-style: none;

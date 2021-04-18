@@ -12,7 +12,6 @@ import {
 import {
   CardWrapper,
   PostContentBox,
-  PostContent,
   StyledCard,
   CardHeader,
   RowBox,
@@ -20,6 +19,7 @@ import {
 } from 'styles/post';
 import ImageCarousel from './ImageCarousel';
 import CommentCard from './CommentCard';
+import PostContent from './PostContent';
 
 const PostCard = ({ post }) => {
   const UserID = useSelector(state => state.user?.user.id);
