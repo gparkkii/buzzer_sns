@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginAction } from 'reducers/user';
+import { loginAction } from 'module/reducers/user';
 import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';

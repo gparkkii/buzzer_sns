@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import Head from 'next/head';
-import Wrapper from '../store/configureStore';
+import Wrapper from '../module/store/configureStore';
 import 'antd/dist/antd.css';
 import 'styles/index.css';
 import 'slick-carousel/slick/slick.css';

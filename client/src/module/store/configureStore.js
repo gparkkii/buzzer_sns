@@ -2,7 +2,7 @@ import { applyMiddleware, createStore, compose } from 'redux';
 import { createWrapper } from 'next-redux-wrapper';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import reducer from 'reducers';
+import reducer from 'module/reducers';
 
 const configureStore = context => {
   console.log(context);

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { logoutAction } from 'reducers/user';
+import { logoutAction } from 'module/reducers/user';
 import { media } from 'styles/media_query';
 import Router from 'next/router';
 import Link from 'next/link';

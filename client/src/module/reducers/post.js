@@ -47,7 +47,8 @@ const dummyPost = {
     id: 1,
     nickname: '박지연',
   },
-  content: '계속 성장하는 개발자 박지연입니다.',
+  content:
+    '계속 성장하는 개발자 박지연입니다. #개발자 #프론트엔드 #코딩공부 #프로그래밍#천재',
   Images: [
     {
       src:
