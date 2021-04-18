@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Comment, List } from 'antd';
 import { PropTypes } from 'prop-types';
+import { Comment, List } from 'antd';
+import { ListBox, StyledList } from 'styles/post';
 import Avatar from 'antd/lib/avatar/avatar';
 import CommentForm from './CommentForm';
 
@@ -41,16 +41,3 @@ CommentCard.propTypes = {
     Comments: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
 };
-
-const ListBox = styled.div`
-  width: 100%;
-  margin-bottom: 30px;
-  border-radius: 20px;
-  transition: all 0.2s ease;
-  background-color: #f0f0f0;
-`;
-
-const StyledList = styled.li`
-  padding: 0px 20px;
-  border-top: 1px solid #ddd;
-`;

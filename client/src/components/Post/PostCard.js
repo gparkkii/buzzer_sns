@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { PropTypes } from 'prop-types';
+import { Button, Avatar, Popover } from 'antd';
 import {
   MoreOutlined,
   HeartOutlined,
@@ -8,9 +9,16 @@ import {
   MessageOutlined,
   ShareAltOutlined,
 } from '@ant-design/icons';
-import { Button, Avatar, Popover } from 'antd';
-import styled from 'styled-components';
-import PostImages from './PostImages';
+import {
+  CardWrapper,
+  PostContentBox,
+  PostContent,
+  StyledCard,
+  CardHeader,
+  RowBox,
+  CardFooter,
+} from 'styles/post';
+import ImageCarousel from './ImageCarousel';
 import CommentCard from './CommentCard';
 
 const PostCard = ({ post }) => {
@@ -29,7 +37,7 @@ const PostCard = ({ post }) => {
   console.log(post);
 
   return (
-    <>
+    <CardWrapper>
       <StyledCard>
         <CardHeader>
           <RowBox>
@@ -54,8 +62,10 @@ const PostCard = ({ post }) => {
             <MoreOutlined />
           </Popover>
         </CardHeader>
-        {post.Images[0] && <PostImages images={post.Images} />}
-        <ContentBox>{post.content}</ContentBox>
+        <PostContentBox>
+          {post.Images[0] && <ImageCarousel images={post.Images} />}
+          {post.content && <PostContent>{post.content}</PostContent>}
+        </PostContentBox>
         <CardFooter>
           <RowBox>
             <RowBox margin="0 10px 0 0">
@@ -85,7 +95,7 @@ const PostCard = ({ post }) => {
           <CommentCard post={post} />
         </>
       )}
-    </>
+    </CardWrapper>
   );
 };
 
@@ -103,58 +113,3 @@ PostCard.propTypes = {
     Comments: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
 };
-
-const StyledCard = styled.div`
-  position: relative;
-  width: 100%;
-  min-height: 240px;
-  margin-bottom: 20px;
-  border-radius: 20px;
-  transition: all 0.2s ease;
-  background-color: #fff;
-  box-shadow: 0 2px 4px 0 rgba(180, 180, 180, 0.15);
-`;
-
-const CardHeader = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  width: 100%;
-  height: 68px;
-  padding: 0px 20px;
-  border-bottom: 1px solid #eaeaea;
-`;
-
-const CardFooter = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  width: 100%;
-  height: 68px;
-  padding: 0px 20px;
-  font-size: 18px;
-  color: #3f92f7;
-  border-top: 1px solid #eaeaea;
-`;
-
-const RowBox = styled.div`
-  position: relative;
-  display: flex;
-  flex-directin: row;
-  align-items: center;
-  margin: ${props => props.margin};
-  & p {
-    margin: 0px 10px;
-    font-size: 16px;
-  }
-`;
-const ContentBox = styled.div`
-  padding: 20px;
-`;

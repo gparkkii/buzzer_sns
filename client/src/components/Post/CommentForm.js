@@ -5,7 +5,12 @@ import { PropTypes } from 'prop-types';
 import { SendOutlined } from '@ant-design/icons';
 import { ErrorMessage } from 'styles/typography';
 import { CommentError } from 'library/options/errors';
-import styled from 'styled-components';
+import {
+  CommentFormBox,
+  CommentTitle,
+  CommentTextArea,
+  CommentButton,
+} from 'styles/post';
 
 const CommentForm = ({ post }) => {
   const {
@@ -66,56 +71,3 @@ CommentForm.propTypes = {
     Comments: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
 };
-
-const CommentTitle = styled.p`
-  font-size: 15px;
-`;
-
-const CommentFormBox = styled.form`
-  width: 100%;
-  padding: 15px 20px 10px 20px;
-`;
-
-const CommentTextArea = styled.textarea`
-  position: relative;
-  width: 100%;
-  height: 60px;
-  padding: 20px;
-  margin-top: 8px;
-  border-radius: 12px;
-  background-color: #fff;
-  transition: all 0.2s ease;
-  font-size: 14px;
-  &:hover {
-    top: -2px;
-  }
-  &:focus {
-    transition: all 0.2s ease-out;
-    top: -2px;
-  }
-`;
-
-const CommentButton = styled.button`
-  position: relative;
-  float: right;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 80px;
-  height: 30px;
-  margin-top: 4px;
-  font-size: 15px;
-  border-radius: 8px;
-  background-color: #ff357b;
-  color: #fff;
-  z-index: 10;
-  & span {
-    display: flex;
-  }
-  & p {
-    margin-right: 8px;
-    font-weight: 400;
-    text-align: center;
-  }
-`;

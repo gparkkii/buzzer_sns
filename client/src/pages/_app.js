@@ -4,6 +4,8 @@ import Head from 'next/head';
 import Wrapper from '../store/configureStore';
 import 'antd/dist/antd.css';
 import 'styles/index.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const App = ({ Component }) => {
   return (

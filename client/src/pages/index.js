@@ -12,13 +12,13 @@ const Home = () => {
   return (
     <AppLayout>
       <RowWrapper>
-        <SideWrapper />
         <ContentWrapper>
           {isLoggedIn && <PostForm />}
           {mainPosts?.map(post => {
             return <PostCard key={post.id} post={post} />;
           })}
         </ContentWrapper>
+        <SideWrapper />
       </RowWrapper>
     </AppLayout>
   );
