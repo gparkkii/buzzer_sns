@@ -1,31 +1,38 @@
-import React, { useCallback, useState, useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
 import { addPost } from 'reducers/post';
-import styled from 'styled-components';
 import { SendOutlined, CameraOutlined } from '@ant-design/icons';
+import { ErrorMessage } from 'styles/typography';
+import { PostError } from 'library/options/errors';
+import styled from 'styled-components';
 
 const PostForm = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    mode: 'onSubmit',
+  });
+
   const dispatch = useDispatch();
   const { imagePaths } = useSelector(state => state.post);
   const FileInput = useRef();
-  const [Text, setText] = useState('');
-
-  const onChangeText = useCallback(e => {
-    setText(e.target.value);
-  }, []);
 
   const onFileUpload = useCallback(() => {
     FileInput.current.click();
   }, [FileInput]);
 
-  const onSubmit = useCallback(e => {
-    e.preventDefault();
+  const onSubmit = useCallback(data => {
+    console.log(data);
     dispatch(addPost);
-    setText('');
+    reset();
   }, []);
 
   return (
-    <form encType="multipart/form-data" onSubmit={onSubmit}>
+    <form encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
       {imagePaths.map(image => {
         return (
           <div key={image}>
@@ -37,10 +44,18 @@ const PostForm = () => {
         );
       })}
       <StyledTextArea
-        value={Text}
-        onChange={onChangeText}
+        id="feedPost"
+        name="feedPost"
         placeholder="당신의 이야기를 들려주세요"
+        className={errors.feedPost ? 'errorInput' : null}
+        {...register('feedPost', {
+          required: true,
+          maxLength: 200,
+        })}
       />
+      {errors.feedPost && (
+        <ErrorMessage>{PostError[errors.feedPost.type]}</ErrorMessage>
+      )}
       <TextAreaButtonBox>
         <div>
           <input type="file" ref={FileInput} multiple hidden />

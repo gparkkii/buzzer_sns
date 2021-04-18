@@ -11,6 +11,7 @@ import {
 import { Button, Avatar, Popover } from 'antd';
 import styled from 'styled-components';
 import PostImages from './PostImages';
+import CommentCard from './CommentCard';
 
 const PostCard = ({ post }) => {
   const UserID = useSelector(state => state.user?.user.id);
@@ -81,7 +82,7 @@ const PostCard = ({ post }) => {
       </StyledCard>
       {commentFormOpened && (
         <>
-          <span>댓글창</span>
+          <CommentCard post={post} />
         </>
       )}
     </>

@@ -19,7 +19,6 @@ import {
 } from 'styles/form';
 
 const LogIn = () => {
-  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -28,6 +27,7 @@ const LogIn = () => {
     mode: 'onTouched',
   });
 
+  const dispatch = useDispatch();
   const [ShowPassword, setShowPassword] = React.useState(false);
 
   const handleVisibility = () => {

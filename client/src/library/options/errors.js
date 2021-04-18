@@ -31,11 +31,12 @@ export const NickNameError = {
   maxLength: '닉네임을 12글자 이내로 작성해주세요.',
 };
 
-export const DescriptionError = {
-  required: '자기소개를 입력해주세요.',
-  maxLength: '자기소개를 100글자 이내로 작성해주세요.',
+export const PostError = {
+  required: '내용을 입력해주세요.',
+  maxLength: '내용을 100글자 이내로 입력해주세요.',
 };
 
-export const UrlError = {
-  pattern: 'url 형식이 옳바르지 않습니다.',
+export const CommentError = {
+  required: '댓글을 입력해주세요.',
+  maxLength: '댓글을 50글자 이내로 입력해주세요.',
 };

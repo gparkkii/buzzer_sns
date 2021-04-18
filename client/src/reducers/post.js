@@ -15,12 +15,6 @@ export const initialState = {
           },
           content: '',
         },
-        {
-          User: {
-            nickname: '',
-          },
-          content: '',
-        },
       ],
     },
   ],

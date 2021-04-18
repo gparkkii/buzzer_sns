@@ -159,6 +159,11 @@ body{
   padding: 10px 24px;
 }
 
+.ant-list-header{
+  width: 50%;
+  padding: 0px 20px 10px 20px;
+}
+
 .focusedLabel {
   border: 1px solid #3F92F7 !important;
   color: #3F92F7;
