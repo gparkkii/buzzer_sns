@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { Button, Avatar, Popover } from 'antd';
+import { Button, Avatar, Empty, Popover } from 'antd';
 import {
   MoreOutlined,
   HeartOutlined,
@@ -65,6 +65,7 @@ const PostCard = ({ post }) => {
         <PostContentBox>
           {post.Images[0] && <ImageCarousel images={post.Images} />}
           {post.content && <PostContent>{post.content}</PostContent>}
+          {post.Images.length === 0 && post.content.length === 0 && <Empty />}
         </PostContentBox>
         <CardFooter>
           <RowBox>

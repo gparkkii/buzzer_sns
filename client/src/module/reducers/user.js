@@ -13,8 +13,8 @@ const initialState = {
   logoutLoading: false,
   logoutDone: false,
   logoutError: false,
-  signinLoading: false,
-  signinDone: false,
+  signupLoading: false,
+  signupDone: false,
   signupError: false,
   followLoading: false,
   followDone: false,
@@ -116,22 +116,22 @@ export default (prevState = initialState, action) => {
     case LOG_OUT_SUCCESS: {
       return {
         ...prevState,
-        isLoggedIn: false,
-        isLoggingIn: false,
-        user: null,
+        logoutLoading: false,
+        logoutDone: true,
+        user: {},
       };
     }
     case LOG_OUT_FAILURE: {
       return {
         ...prevState,
-        loginLoading: false,
-        logInError: action.error,
+        logoutLoading: false,
+        logoutError: action.error,
       };
     }
     case SIGN_UP_REQUEST: {
       return {
         ...prevState,
-        SignupLoading: true,
+        signupLoading: true,
         signupDone: false,
         signupError: null,
       };

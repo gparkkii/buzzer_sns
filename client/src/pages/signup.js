@@ -3,6 +3,9 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { signUpRequestAction } from 'module/reducers/user';
+import { EyeInvisibleTwoTone, EyeTwoTone } from '@ant-design/icons';
 import { FlexWrapper } from 'styles/wrapper';
 import {
   ErrorMessage,
@@ -10,7 +13,6 @@ import {
   InputAlert,
   SmallMessage,
 } from 'styles/typography';
-import { EyeInvisibleTwoTone, EyeTwoTone } from '@ant-design/icons';
 import {
   NameError,
   NickNameError,
@@ -26,6 +28,7 @@ import {
   StyledButton,
   StyledInput,
 } from 'styles/form';
+import LoadingStatus from 'components/Common/LoadingStatus';
 
 const SignUp = () => {
   const {
@@ -36,6 +39,9 @@ const SignUp = () => {
   } = useForm({
     mode: 'onTouched',
   });
+  const dispatch = useDispatch();
+  const { signupLoading } = useSelector(state => state.user);
+  const { signupDone } = useSelector(state => state.user);
 
   const password = useRef();
   password.current = watch('password');
@@ -47,6 +53,7 @@ const SignUp = () => {
 
   const onSubmit = useCallback(user => {
     console.log(user);
+    dispatch(signUpRequestAction({ user }));
     Router.push('/login');
   }, []);
 
@@ -56,6 +63,7 @@ const SignUp = () => {
         <title>회원가입 | Buzzer</title>
       </Head>
       <FlexWrapper>
+        {signupLoading && <LoadingStatus status="가입 중입니다." />}
         <FormBox onSubmit={handleSubmit(onSubmit)}>
           <LoginTitle>
             Welcome to

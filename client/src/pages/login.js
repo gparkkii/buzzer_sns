@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import { loginAction } from 'module/reducers/user';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginRequestAction } from 'module/reducers/user';
 import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
@@ -17,6 +17,7 @@ import {
   StyledButton,
   StyledInput,
 } from 'styles/form';
+import LoadingStatus from 'components/Common/LoadingStatus';
 
 const LogIn = () => {
   const {
@@ -28,6 +29,8 @@ const LogIn = () => {
   });
 
   const dispatch = useDispatch();
+  const { loginLoading } = useSelector(state => state.user);
+  const { loginDone } = useSelector(state => state.user);
   const [ShowPassword, setShowPassword] = React.useState(false);
 
   const handleVisibility = () => {
@@ -36,7 +39,7 @@ const LogIn = () => {
 
   const onSubmit = useCallback(user => {
     console.log(user);
-    dispatch(loginAction({ user }));
+    dispatch(loginRequestAction({ user }));
     Router.push('/');
   }, []);
 
@@ -46,6 +49,7 @@ const LogIn = () => {
         <title>로그인 | Buzzer</title>
       </Head>
       <FlexWrapper>
+        {loginLoading && <LoadingStatus status="로그인 중입니다." />}
         <FormBox onSubmit={handleSubmit(onSubmit)}>
           <LoginTitle>
             Hello,

@@ -150,13 +150,17 @@ body{
   }
 }
 
-.ant-drawer-body{
+.ant-drawer-body {
   padding: 10px 24px;
 }
 
-.ant-list-header{
+.ant-list-header {
   width: 50%;
   padding: 0px 20px 10px 20px;
+}
+
+.ant-empty {
+  margin: 30px;
 }
 
 .focusedLabel {

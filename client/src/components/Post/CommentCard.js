@@ -1,6 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { Comment, List } from 'antd';
+import { Comment, List, Empty } from 'antd';
 import { ListBox, StyledList } from 'styles/post';
 import Avatar from 'antd/lib/avatar/avatar';
 import CommentForm from './CommentForm';
@@ -9,7 +9,8 @@ const CommentCard = ({ post }) => {
   return (
     <ListBox>
       <CommentForm post={post} />
-      <List
+      {post.Comments ?
+        <List
         header={`댓글 ${post.Comments.length}개`}
         itemLayout="horizontal"
         dataSource={post.Comments}
@@ -23,6 +24,8 @@ const CommentCard = ({ post }) => {
           </StyledList>
         )}
       />
+        : <Empty/>
+      }
     </ListBox>
   );
 };

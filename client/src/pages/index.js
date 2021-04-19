@@ -6,14 +6,14 @@ import PostCard from 'components/Post/PostCard';
 import { RowWrapper, SideWrapper, ContentWrapper } from 'styles/wrapper';
 
 const Home = () => {
-  const { isLoggedIn } = useSelector(state => state.user);
+  const { loginDone } = useSelector(state => state.user);
   const { mainPosts } = useSelector(state => state.post);
 
   return (
     <AppLayout>
       <RowWrapper>
         <ContentWrapper>
-          {isLoggedIn && <PostForm />}
+          {loginDone && <PostForm />}
           {mainPosts?.map(post => {
             return <PostCard key={post.id} post={post} />;
           })}

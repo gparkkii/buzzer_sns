@@ -1,24 +1,28 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { logoutAction } from 'module/reducers/user';
+import { logoutRequestAction } from 'module/reducers/user';
 import { media } from 'styles/media_query';
 import Router from 'next/router';
 import Link from 'next/link';
 import styled from 'styled-components';
+import LoadingStatus from '../LoadingStatus';
 
 const AuthNav = () => {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(state => state.user.isLoggedIn);
+        
+  const { logoutLoading } = useSelector(state => state.user);
+  const { loginDone } = useSelector(state => state.user);
 
   const onLogout = useCallback(() => {
-    dispatch(logoutAction);
+    dispatch(logoutRequestAction);
     Router.push('/login');
   }, []);
 
   return (
     <>
       <NavBox>
-        {!isLoggedIn ? (
+        {logoutLoading && <LoadingStatus status="로그아웃 중입니다." />}
+        {!loginDone ? (
           <>
             <li>
               <Link href="/signup">

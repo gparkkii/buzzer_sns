@@ -33,10 +33,12 @@ export const NickNameError = {
 
 export const PostError = {
   required: '내용을 입력해주세요.',
+  minLength: '내용을 2글자 이상 입력해주세요.',
   maxLength: '내용을 100글자 이내로 입력해주세요.',
 };
 
 export const CommentError = {
   required: '댓글을 입력해주세요.',
+  minLength: '댓글을 2글자 이상 입력해주세요.',
   maxLength: '댓글을 50글자 이내로 입력해주세요.',
 };

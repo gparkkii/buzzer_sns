@@ -1,7 +1,7 @@
 import React, { useCallback, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { addPost } from 'module/reducers/post';
+import { addPostAction } from 'module/reducers/post';
 import { SendOutlined, CameraOutlined } from '@ant-design/icons';
 import {
   CardWrapper,
@@ -32,7 +32,7 @@ const PostForm = () => {
 
   const onSubmit = useCallback(data => {
     console.log(data);
-    dispatch(addPost);
+    dispatch(addPostAction);
     reset();
   }, []);
 
@@ -56,6 +56,7 @@ const PostForm = () => {
           className={errors.feedPost ? 'errorInput' : null}
           {...register('feedPost', {
             required: true,
+            minLength: 2,
             maxLength: 200,
           })}
         />

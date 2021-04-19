@@ -7,20 +7,7 @@ export const initialState = {
         nickname: '',
       },
       content: '',
-      Images: [
-        {
-          src:
-            'https://avatars.githubusercontent.com/u/71811780?s=400&u=8b77fedf491604b40fc6e0f7ef4010bae78de38d&v=4',
-        },
-        {
-          src:
-            'https://avatars.githubusercontent.com/u/71811780?s=400&u=8b77fedf491604b40fc6e0f7ef4010bae78de38d&v=4',
-        },
-        {
-          src:
-            'https://avatars.githubusercontent.com/u/71811780?s=400&u=8b77fedf491604b40fc6e0f7ef4010bae78de38d&v=4',
-        },
-      ],
+      Images: [],
       Comments: [
         {
           User: {
@@ -49,8 +36,12 @@ const dummyPost = {
   Images: [
     {
       src:
-        'https://media.vlpt.us/images/gparkkii/profile/a82678c3-c609-4c0f-a866-d1bbb8db1ba4/progileimage.jpg?w=400',
+        'https://avatars.githubusercontent.com/u/71811780?s=400&u=8b77fedf491604b40fc6e0f7ef4010bae78de38d&v=4',
     },
+    {
+      src: 
+        'https://media.vlpt.us/images/gparkkii/profile/a82678c3-c609-4c0f-a866-d1bbb8db1ba4/progileimage.jpg?w=400',
+    }
   ],
   Comments: [
     {
@@ -84,11 +75,11 @@ export const ADD_COMMENT_REQUEST = 'ADD_COMMENT_REQUEST';
 export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
 export const ADD_COMMENT_FAILURE = 'ADD_COMMENT_FAILURE';
 
-export const addPost = {
+export const addPostAction = {
   type: ADD_POST_REQUEST,
 };
 
-export const addComment = {
+export const addCommentAction = {
   type: ADD_COMMENT_REQUEST,
 };
 

@@ -41,6 +41,7 @@ const CommentForm = ({ post }) => {
         className={errors.comment ? 'errorInput' : null}
         {...register('comment', {
           required: true,
+          minLength: 2,
           maxLength: 50,
         })}
       />
