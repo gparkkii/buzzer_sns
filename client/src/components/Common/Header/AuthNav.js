@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutRequestAction } from 'module/reducers/user';
 import { media } from 'styles/media_query';
@@ -9,7 +9,7 @@ import LoadingStatus from '../LoadingStatus';
 
 const AuthNav = () => {
   const dispatch = useDispatch();
-        
+
   const { logoutLoading } = useSelector(state => state.user);
   const { loginDone } = useSelector(state => state.user);
 

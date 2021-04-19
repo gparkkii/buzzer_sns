@@ -32,7 +32,7 @@ const PostForm = () => {
 
   const onSubmit = useCallback(data => {
     console.log(data);
-    dispatch(addPostAction);
+    dispatch(addPostAction(data.feedPost));
     reset();
   }, []);
 

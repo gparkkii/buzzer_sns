@@ -9,23 +9,24 @@ const CommentCard = ({ post }) => {
   return (
     <ListBox>
       <CommentForm post={post} />
-      {post.Comments ?
+      {post.Comments ? (
         <List
-        header={`댓글 ${post.Comments.length}개`}
-        itemLayout="horizontal"
-        dataSource={post.Comments}
-        renderItem={item => (
-          <StyledList>
-            <Comment
-              author={item.User.nickname}
-              avatar={<Avatar>{item.User.nickname[0]}</Avatar>}
-              content={item.content}
-            />
-          </StyledList>
-        )}
-      />
-        : <Empty/>
-      }
+          header={`댓글 ${post.Comments.length}개`}
+          itemLayout="horizontal"
+          dataSource={post.Comments}
+          renderItem={item => (
+            <StyledList>
+              <Comment
+                author={item.User.nickname}
+                avatar={<Avatar>{item.User.nickname[0]}</Avatar>}
+                content={item.content}
+              />
+            </StyledList>
+          )}
+        />
+      ) : (
+        <Empty />
+      )}
     </ListBox>
   );
 };

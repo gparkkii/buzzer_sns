@@ -39,9 +39,9 @@ const dummyPost = {
         'https://avatars.githubusercontent.com/u/71811780?s=400&u=8b77fedf491604b40fc6e0f7ef4010bae78de38d&v=4',
     },
     {
-      src: 
+      src:
         'https://media.vlpt.us/images/gparkkii/profile/a82678c3-c609-4c0f-a866-d1bbb8db1ba4/progileimage.jpg?w=400',
-    }
+    },
   ],
   Comments: [
     {

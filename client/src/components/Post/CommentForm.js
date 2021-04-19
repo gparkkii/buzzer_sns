@@ -1,7 +1,8 @@
 import React, { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { PropTypes } from 'prop-types';
+import { addCommentAction } from 'module/reducers/post';
 import { SendOutlined } from '@ant-design/icons';
 import { ErrorMessage } from 'styles/typography';
 import { CommentError } from 'library/options/errors';
@@ -22,12 +23,16 @@ const CommentForm = ({ post }) => {
     mode: 'onSubmit',
   });
 
+  const dispatch = useDispatch();
   const UserID = useSelector(state => state.user?.user.id);
 
   const onSubmit = useCallback(comment => {
     console.log('post.id :', post.id);
     console.log('Comment :', comment);
     console.log('UserID :', UserID);
+    dispatch(
+      addCommentAction({ userId: UserID, postId: post.id, content: comment }),
+    );
     reset();
   }, []);
 
