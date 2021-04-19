@@ -55,6 +55,7 @@ function* addPost(action) {
     yield delay(1500);
     yield put({
       type: ADD_POST_SUCCESS,
+      data: action.data,
     });
     yield put({
       type: ADD_POST_TO_ME,
