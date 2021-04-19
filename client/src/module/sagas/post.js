@@ -31,7 +31,7 @@ function loadPostsAPI(data) {
 function* loadPosts(action) {
   try {
     // const result = yield call(loadPostsAPI, action.data);
-    yield delay(1500);
+    yield delay(1000);
     yield put({
       type: LOAD_POSTS_SUCCESS,
       data: action.data,
@@ -52,21 +52,26 @@ function addPostAPI(data) {
 function* addPost(action) {
   try {
     // const result = yield call(addPostAPI, action.data);
-    yield delay(1500);
+    yield delay(1000);
     yield put({
       type: ADD_POST_SUCCESS,
       data: action.data,
     });
-    yield put({
-      type: ADD_POST_TO_ME,
-      data: action.data,
-    });
   } catch (err) {
-    console.error(err);
     yield put({
       type: ADD_POST_FAILURE,
       data: err.response.data,
     });
+    //   yield put({
+    //     type: ADD_POST_TO_ME,
+    //     data: action.data,
+    //   });
+    // } catch (err) {
+    //   console.error(err);
+    //   yield put({
+    //     type: ADD_POST_FAILURE,
+    //     data: err.response.data,
+    //   });
   }
 }
 
@@ -77,7 +82,7 @@ function removePostAPI(data) {
 function* removePost(action) {
   try {
     // const result = yield call(removePostAPI, action.data);
-    yield delay(1500);
+    yield delay(1000);
     yield put({
       type: REMOVE_POST_SUCCESS,
       data: action.data,

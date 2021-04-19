@@ -50,7 +50,7 @@ const dummyPost = data => ({
   id: shortId.generate(),
   User: {
     id: shortId.generate(),
-    nickname: '박지연',
+    nickname: shortId.generate(),
   },
   content: data,
   Images: [],
@@ -62,7 +62,7 @@ const dummyComment = data => ({
   content: data,
   User: {
     id: shortId.generate(),
-    nickname: '박지연',
+    nickname: shortId.generate(),
   },
 });
 
