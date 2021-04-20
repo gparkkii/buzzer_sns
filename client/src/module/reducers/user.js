@@ -1,6 +1,8 @@
-const dummyUser = {
+import { produce } from 'immer';
+
+const dummyUser = data => ({
   id: 0,
-  email: '',
+  email: data.user.email,
   name: '박지연',
   nickname: '보노보노',
   Posts: [{ id: 0 }],
@@ -16,7 +18,7 @@ const dummyUser = {
     { nickname: '피글렛' },
     { nickname: '진구' },
   ],
-};
+});
 
 const initialState = {
   loginLoading: false,
@@ -71,7 +73,7 @@ export const REMOVE_POST_OF_USER = 'REMOVE_POST_OF_USER';
 export const ADD_COMMENT_TO_USER = 'ADD_COMMENT_TO_USER';
 export const REMOVE_COMMENT_OF_USER = 'REMOVE_COMMENT_OF_USER';
 
-export const signUpRequestAction = data => {
+export const signupRequestAction = data => {
   return {
     type: SIGN_UP_REQUEST,
     data,
@@ -94,178 +96,108 @@ export const logoutRequestAction = {
 };
 
 export default (prevState = initialState, action) => {
-  switch (action.type) {
-    case LOG_IN_REQUEST: {
-      return {
-        ...prevState,
-        loginLoading: true,
-        loginDone: false,
-        logInError: null,
-      };
+  return produce(prevState, draft => {
+    switch (action.type) {
+      case LOG_IN_REQUEST:
+        draft.loginLoading = true;
+        draft.loginError = null;
+        draft.loginDone = false;
+        break;
+      case LOG_IN_SUCCESS:
+        draft.loginLoading = false;
+        draft.user = dummyUser(action.data);
+        draft.loginDone = true;
+        break;
+      case LOG_IN_FAILURE:
+        draft.loginLoading = false;
+        draft.loginError = action.error;
+        break;
+      case LOG_OUT_REQUEST:
+        draft.logoutLoading = true;
+        draft.logoutError = null;
+        draft.logoutDone = false;
+        break;
+      case LOG_OUT_SUCCESS:
+        draft.logoutLoading = false;
+        draft.logoutDone = true;
+        draft.user = {};
+        break;
+      case LOG_OUT_FAILURE:
+        draft.logoutLoading = false;
+        draft.logoutError = action.error;
+        break;
+      case SIGN_UP_REQUEST:
+        draft.signupLoading = true;
+        draft.signupError = null;
+        draft.signupDone = false;
+        break;
+      case SIGN_UP_SUCCESS:
+        draft.signupLoading = false;
+        draft.signupDone = true;
+        break;
+      case SIGN_UP_FAILURE:
+        draft.signupLoading = false;
+        draft.signupError = action.error;
+        break;
+      case FOLLOW_REQUEST:
+        draft.followLoading = true;
+        draft.followError = null;
+        draft.followDone = false;
+        break;
+      case FOLLOW_SUCCESS:
+        draft.followLoading = false;
+        draft.user.Followings.push({ id: action.data });
+        draft.followDone = true;
+        break;
+      case FOLLOW_FAILURE:
+        draft.followLoading = false;
+        draft.followError = action.error;
+        break;
+      case UNFOLLOW_REQUEST:
+        draft.unfollowLoading = true;
+        draft.unfollowError = null;
+        draft.unfollowDone = false;
+        break;
+      case UNFOLLOW_SUCCESS:
+        draft.unfollowLoading = false;
+        draft.user.Followings = draft.user.Followings.filter(
+          v => v.id !== action.data,
+        );
+        draft.unfollowDone = true;
+        break;
+      case UNFOLLOW_FAILURE:
+        draft.unfollowLoading = false;
+        draft.unfollowError = action.error;
+        break;
+      case CHANGE_NICKNAME_REQUEST:
+        draft.changeNicknameLoading = true;
+        draft.changeNicknameError = null;
+        draft.changeNicknameDone = false;
+        break;
+      case CHANGE_NICKNAME_SUCCESS:
+        draft.changeNicknameLoading = false;
+        draft.changeNicknameDone = true;
+        break;
+      case CHANGE_NICKNAME_FAILURE:
+        draft.changeNicknameLoading = false;
+        draft.changeNicknameError = action.error;
+        break;
+      case ADD_POST_TO_USER:
+        draft.user.Posts.unshift({ id: action.data });
+        break;
+      case REMOVE_POST_OF_USER:
+        draft.user.Posts = draft.user.Posts.filter(v => v.id !== action.data);
+        break;
+      case ADD_COMMENT_TO_USER:
+        draft.user.Comments.unshift({ id: action.data.id });
+        break;
+      case REMOVE_COMMENT_OF_USER:
+        draft.user.Comments = draft.user.Comments.filter(
+          v => v.id !== action.data,
+        );
+        break;
+      default:
+        break;
     }
-    case LOG_IN_SUCCESS: {
-      return {
-        ...prevState,
-        loginLoading: false,
-        loginDone: true,
-        user: dummyUser,
-        loginData: action.data,
-      };
-    }
-    case LOG_IN_FAILURE: {
-      return {
-        ...prevState,
-        loginLoading: false,
-        logInError: action.error,
-      };
-    }
-    case LOG_OUT_REQUEST: {
-      return {
-        ...prevState,
-        logoutLoading: true,
-        logoutDone: false,
-        logoutError: null,
-      };
-    }
-    case LOG_OUT_SUCCESS: {
-      return {
-        ...prevState,
-        logoutLoading: false,
-        logoutDone: true,
-        user: {},
-      };
-    }
-    case LOG_OUT_FAILURE: {
-      return {
-        ...prevState,
-        logoutLoading: false,
-        logoutError: action.error,
-      };
-    }
-    case SIGN_UP_REQUEST: {
-      return {
-        ...prevState,
-        signupLoading: true,
-        signupDone: false,
-        signupError: null,
-      };
-    }
-    case SIGN_UP_SUCCESS: {
-      return {
-        ...prevState,
-        signupLoading: false,
-        signupDone: true,
-      };
-    }
-    case SIGN_UP_FAILURE: {
-      return {
-        ...prevState,
-        signupLoading: false,
-        signupError: action.error,
-      };
-    }
-    case FOLLOW_REQUEST: {
-      return {
-        ...prevState,
-        followLoading: true,
-        followDone: false,
-        followError: null,
-      };
-    }
-    case FOLLOW_SUCCESS: {
-      return {
-        ...prevState,
-        followLoading: false,
-        followDone: true,
-      };
-    }
-    case FOLLOW_FAILURE: {
-      return {
-        ...prevState,
-        followLoading: false,
-        followError: action.error,
-      };
-    }
-    case UNFOLLOW_REQUEST: {
-      return {
-        ...prevState,
-        unfollowLoading: true,
-        unfollowDone: false,
-        unfollowError: null,
-      };
-    }
-    case UNFOLLOW_SUCCESS: {
-      return {
-        ...prevState,
-        unfollowLoading: false,
-        unfollowDone: true,
-      };
-    }
-    case UNFOLLOW_FAILURE: {
-      return {
-        ...prevState,
-        unfollowLoading: false,
-        unfollowError: action.error,
-      };
-    }
-    case CHANGE_NICKNAME_REQUEST: {
-      return {
-        ...prevState,
-        changeNicknameLoading: true,
-        changeNicknameDone: false,
-        changeNicknameError: null,
-      };
-    }
-    case CHANGE_NICKNAME_SUCCESS: {
-      return {
-        ...prevState,
-        changeNicknameLoading: false,
-        changeNicknameDone: true,
-      };
-    }
-    case CHANGE_NICKNAME_FAILURE: {
-      return {
-        ...prevState,
-        changeNicknameLoading: false,
-        changeNicknameError: action.error,
-      };
-    }
-    case ADD_POST_TO_USER:
-      return {
-        ...prevState,
-        user: {
-          ...prevState.user,
-          Posts: [{ id: action.data }, ...prevState.user.Posts],
-        },
-      };
-    case REMOVE_POST_OF_USER:
-      return {
-        ...prevState,
-        user: {
-          ...prevState.user,
-          Posts: prevState.user.Posts.filter(v => v.id !== action.data),
-        },
-      };
-    case ADD_COMMENT_TO_USER:
-      return {
-        ...prevState,
-        user: {
-          ...prevState.user,
-          Comments: [{ id: action.data.id }, ...prevState.user.Comments],
-        },
-      };
-    case REMOVE_COMMENT_OF_USER:
-      return {
-        ...prevState,
-        user: {
-          ...prevState.user,
-          Comments: prevState.user.Comments.filter(v => v.id !== action.data),
-        },
-      };
-    default: {
-      return {
-        ...prevState,
-      };
-    }
-  }
+  });
 };
