@@ -52,6 +52,12 @@ export const RowBox = styled.div`
     font-size: 16px;
   }
 `;
+
+export const BoldId = styled.p`
+  display: inline-box;
+  font-weight: 600;
+`;
+
 export const PostContentBox = styled.div`
   position: relative;
   display: flex;
@@ -65,6 +71,7 @@ export const PostContentBox = styled.div`
 export const PostContents = styled.div`
   padding: 20px;
   width: 100%;
+  font-size: 14px;
   text-align: left;
 `;
 
@@ -191,12 +198,21 @@ export const ListBox = styled.div`
 `;
 
 export const StyledList = styled.li`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   padding: 0px 20px;
   border-top: 1px solid #ddd;
+  & button {
+    font-size: 13px;
+    font-weight: 600;
+    color: #3f92f7;
+  }
 `;
 
 export const HashTag = styled.a`
-  color: #4371cc;
+  color: #2760a5;
   &:hover {
     color: #3f92f7;
   }

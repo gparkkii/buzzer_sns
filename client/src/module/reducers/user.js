@@ -1,11 +1,21 @@
 const dummyUser = {
-  id: 1,
+  id: 0,
   email: '',
-  name: '',
-  nickname: '박지연',
-  Posts: [],
-  Followings: [],
-  Followers: [],
+  name: '박지연',
+  nickname: '보노보노',
+  Posts: [{ id: 0 }],
+  Comments: [{ id: 0 }],
+  Followings: [
+    { nickname: '지파키' },
+    { nickname: '푸우' },
+    { nickname: '피글렛' },
+  ],
+  Followers: [
+    { nickname: '지파키' },
+    { nickname: '푸우' },
+    { nickname: '피글렛' },
+    { nickname: '진구' },
+  ],
 };
 
 const initialState = {
@@ -56,8 +66,10 @@ export const UNFOLLOW_REQUEST = 'UNFOLLOW_REQUEST';
 export const UNFOLLOW_SUCCESS = 'UNFOLLOW_SUCCESS';
 export const UNFOLLOW_FAILURE = 'UNFOLLOW_FAILURE';
 
-export const ADD_POST_TO_ME = 'ADD_POST_TO_ME';
-export const REMOVE_POST_OF_ME = 'REMOVE_POST_OF_ME';
+export const ADD_POST_TO_USER = 'ADD_POST_TO_USER';
+export const REMOVE_POST_OF_USER = 'REMOVE_POST_OF_USER';
+export const ADD_COMMENT_TO_USER = 'ADD_COMMENT_TO_USER';
+export const REMOVE_COMMENT_OF_USER = 'REMOVE_COMMENT_OF_USER';
 
 export const signUpRequestAction = data => {
   return {
@@ -218,20 +230,36 @@ export default (prevState = initialState, action) => {
         changeNicknameError: action.error,
       };
     }
-    case ADD_POST_TO_ME:
+    case ADD_POST_TO_USER:
       return {
         ...prevState,
-        me: {
-          ...prevState.me,
-          Posts: [{ id: action.data }, ...prevState.me.Posts],
+        user: {
+          ...prevState.user,
+          Posts: [{ id: action.data }, ...prevState.user.Posts],
         },
       };
-    case REMOVE_POST_OF_ME:
+    case REMOVE_POST_OF_USER:
       return {
         ...prevState,
-        me: {
-          ...prevState.me,
-          Posts: prevState.me.Posts.filter(v => v.id !== action.data),
+        user: {
+          ...prevState.user,
+          Posts: prevState.user.Posts.filter(v => v.id !== action.data),
+        },
+      };
+    case ADD_COMMENT_TO_USER:
+      return {
+        ...prevState,
+        user: {
+          ...prevState.user,
+          Comments: [{ id: action.data.id }, ...prevState.user.Comments],
+        },
+      };
+    case REMOVE_COMMENT_OF_USER:
+      return {
+        ...prevState,
+        user: {
+          ...prevState.user,
+          Comments: prevState.user.Comments.filter(v => v.id !== action.data),
         },
       };
     default: {

@@ -12,7 +12,7 @@ export const media = {
     }
   `,
   desktop: (...args) => css`
-    @media (min-width: 1200px) {
+    @media (min-width: 1280px) {
       ${css(...args)}
     }
   `,

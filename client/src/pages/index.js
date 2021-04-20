@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import AppLayout from 'components/Common/AppLayout';
 import PostForm from 'components/Post/PostForm';
 import PostCard from 'components/Post/PostCard';
+import UserProfile from 'components/Profile/UserProfile';
+import IndexSider from 'components/IndexSider';
 import { RowWrapper, SideWrapper, ContentWrapper } from 'styles/wrapper';
 
 const Home = () => {
@@ -12,13 +14,18 @@ const Home = () => {
   return (
     <AppLayout>
       <RowWrapper>
+        <SideWrapper margin="0px 40px 0px 0px">
+          <UserProfile />
+        </SideWrapper>
         <ContentWrapper>
           {loginDone && <PostForm />}
           {mainPosts?.map(post => {
             return <PostCard key={post.id} post={post} />;
           })}
         </ContentWrapper>
-        <SideWrapper />
+        <SideWrapper margin="0px 0px 0px 40px">
+          <IndexSider />
+        </SideWrapper>
       </RowWrapper>
     </AppLayout>
   );

@@ -21,7 +21,7 @@ const AuthNav = () => {
   return (
     <>
       <NavBox>
-        {logoutLoading && <LoadingStatus status="로그아웃 중입니다." />}
+        {logoutLoading && <LoadingStatus status="로그아웃 시도중..." />}
         {!loginDone ? (
           <>
             <li>

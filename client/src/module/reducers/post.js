@@ -3,10 +3,10 @@ import shortId from 'shortid';
 export const initialState = {
   mainPosts: [
     {
-      id: 0,
+      id: 0, // mainpost id
       User: {
-        id: 0,
-        nickname: '박지연',
+        id: 0, // user id
+        nickname: '보노보노',
       },
       content:
         '계속 성장하는 개발자 박지연입니다. #개발자 #프론트엔드 #코딩공부 #프로그래밍#천재',
@@ -22,12 +22,15 @@ export const initialState = {
       ],
       Comments: [
         {
+          id: 0, // comment id
           User: {
+            id: 0, // user id
             nickname: '보노보노',
           },
           content: '힘내세요~',
         },
         {
+          id: shortId.generate(),
           User: {
             nickname: '도라에몽',
           },
@@ -44,25 +47,31 @@ export const initialState = {
   addCommentLoading: false,
   addCommentDone: false,
   addCommentError: null,
+  loadPostsLoading: false,
+  loadPostsDone: false,
+  loadPostsError: null,
+  removePostLoading: false,
+  removePostDone: false,
+  removePostError: null,
 };
 
 const dummyPost = data => ({
-  id: shortId.generate(),
+  id: data.id,
+  content: data.content,
   User: {
-    id: shortId.generate(),
-    nickname: shortId.generate(),
+    id: 0,
+    nickname: '보노보노',
   },
-  content: data,
   Images: [],
   Comments: [],
 });
 
 const dummyComment = data => ({
-  id: shortId.generate(),
-  content: data,
+  id: data.id,
+  content: data.content.comment,
   User: {
-    id: shortId.generate(),
-    nickname: shortId.generate(),
+    id: 0,
+    nickname: '보노보노',
   },
 });
 
@@ -82,6 +91,10 @@ export const ADD_COMMENT_REQUEST = 'ADD_COMMENT_REQUEST';
 export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
 export const ADD_COMMENT_FAILURE = 'ADD_COMMENT_FAILURE';
 
+export const REMOVE_COMMENT_REQUEST = 'REMOVE_COMMENT_REQUEST';
+export const REMOVE_COMMENT_SUCCESS = 'REMOVE_COMMENT_SUCCESS';
+export const REMOVE_COMMENT_FAILURE = 'REMOVE_COMMENT_FAILURE';
+
 export const addPostAction = data => ({
   type: ADD_POST_REQUEST,
   data,
@@ -89,6 +102,16 @@ export const addPostAction = data => ({
 
 export const addCommentAction = data => ({
   type: ADD_COMMENT_REQUEST,
+  data,
+});
+
+export const removePostAction = data => ({
+  type: REMOVE_POST_REQUEST,
+  data,
+});
+
+export const removeCommentAction = data => ({
+  type: REMOVE_COMMENT_REQUEST,
   data,
 });
 
@@ -128,10 +151,10 @@ export default (prevState = initialState, action) => {
     }
     case ADD_COMMENT_SUCCESS: {
       const postIndex = prevState.mainPosts.findIndex(
-        v => v.id === action.data.postId,
+        v => v.id === action.data.content.postId,
       );
       const post = { ...prevState.mainPosts[postIndex] };
-      post.Comments = [dummyComment(action.data.content), ...post.Comments];
+      post.Comments = [dummyComment(action.data), ...post.Comments];
       const mainPosts = [...prevState.mainPosts];
       mainPosts[postIndex] = post;
       return {
@@ -146,6 +169,60 @@ export default (prevState = initialState, action) => {
         ...prevState,
         addCommentLoading: false,
         addCommentError: action.error,
+      };
+    }
+    case REMOVE_POST_REQUEST: {
+      return {
+        ...prevState,
+        removePostLoading: true,
+        removePostDone: false,
+        removePostError: null,
+      };
+    }
+    case REMOVE_POST_SUCCESS: {
+      return {
+        ...prevState,
+        mainPosts: prevState.mainPosts.filter(v => v.id !== action.data),
+        removePostLoading: false,
+        removePostDone: true,
+      };
+    }
+    case REMOVE_POST_FAILURE: {
+      return {
+        ...prevState,
+        removePostLoading: false,
+        removePostError: action.error,
+      };
+    }
+    case REMOVE_COMMENT_REQUEST: {
+      return {
+        ...prevState,
+        removeCommentLoading: true,
+        removeCommentDone: false,
+        removeCommentError: null,
+      };
+    }
+    case REMOVE_COMMENT_SUCCESS: {
+      const postIndex = prevState.mainPosts.findIndex(
+        v => v.id === action.data.postId,
+      );
+      const post = { ...prevState.mainPosts[postIndex] };
+      post.Comments = post.Comments.filter(v => v.id !== action.data.commentId);
+      const mainPosts = [...prevState.mainPosts];
+      mainPosts[postIndex] = post;
+
+      return {
+        ...prevState,
+        mainPosts,
+        removeCommentLoading: false,
+        removeCommentDone: true,
+      };
+    }
+    case REMOVE_COMMENT_FAILURE: {
+      return {
+        ...prevState,
+        removeCommentLoading: false,
+        removeCommentError: action.error,
       };
     }
     default: {

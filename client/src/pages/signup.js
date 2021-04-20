@@ -63,7 +63,7 @@ const SignUp = () => {
         <title>회원가입 | Buzzer</title>
       </Head>
       <FlexWrapper>
-        {signupLoading && <LoadingStatus status="가입 중입니다." />}
+        {signupLoading && <LoadingStatus status="가입 시도중..." />}
         <FormBox onSubmit={handleSubmit(onSubmit)}>
           <LoginTitle>
             Welcome to

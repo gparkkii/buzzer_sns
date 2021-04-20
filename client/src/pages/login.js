@@ -49,7 +49,7 @@ const LogIn = () => {
         <title>로그인 | Buzzer</title>
       </Head>
       <FlexWrapper>
-        {loginLoading && <LoadingStatus status="로그인 중입니다." />}
+        {loginLoading && <LoadingStatus status="로그인 시도중..." />}
         <FormBox onSubmit={handleSubmit(onSubmit)}>
           <LoginTitle>
             Hello,

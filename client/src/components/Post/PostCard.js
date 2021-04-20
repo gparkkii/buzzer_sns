@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { PropTypes } from 'prop-types';
+import { removePostAction } from 'module/reducers/post';
 import { Button, Avatar, Empty, Popover } from 'antd';
 import {
   MoreOutlined,
@@ -15,16 +16,25 @@ import {
   StyledCard,
   CardHeader,
   RowBox,
+  BoldId,
   CardFooter,
 } from 'styles/post';
+import LoadingStatus from 'components/Common/LoadingStatus';
 import ImageCarousel from './ImageCarousel';
 import CommentCard from './CommentCard';
 import PostContent from './PostContent';
 
 const PostCard = ({ post }) => {
+  const dispatch = useDispatch();
   const UserID = useSelector(state => state.user?.user.id);
+  const { removePostLoading } = useSelector(state => state.post);
+
   const [commentFormOpened, setCommentFormOpened] = useState(false);
   const [Liked, setLiked] = useState(false);
+
+  const onRemovePost = useCallback(() => {
+    dispatch(removePostAction(post.id));
+  });
 
   const onToggleLike = useCallback(() => {
     setLiked(!Liked);
@@ -34,24 +44,23 @@ const PostCard = ({ post }) => {
     setCommentFormOpened(!commentFormOpened);
   }, [commentFormOpened]);
 
-  console.log(post);
-
   return (
     <CardWrapper>
       <StyledCard>
+        {removePostLoading && <LoadingStatus status="게시글 삭제중..." />}
         <CardHeader>
           <RowBox>
-            <Avatar size={40}>U</Avatar>
-            <p>{post.User.nickname}</p>
+            <Avatar size={40}>{post.User.nickname[0]}</Avatar>
+            <BoldId>{post.User.nickname}</BoldId>
           </RowBox>
           <Popover
             key="popover"
             content={
               <Button.Group>
-                {UserID && post.User.id === UserID ? (
+                {post.User.id === UserID ? (
                   <>
                     <Button>수정</Button>
-                    <Button>삭제</Button>
+                    <Button onClick={onRemovePost}>삭제</Button>
                   </>
                 ) : (
                   <Button>신고</Button>
@@ -64,8 +73,12 @@ const PostCard = ({ post }) => {
         </CardHeader>
         <PostContentBox>
           {post.Images[0] && <ImageCarousel images={post.Images} />}
-          {post.content && <PostContent>{post.content}</PostContent>}
-          {post.Images.length === 0 && post.content.length === 0 && <Empty />}
+          {post.content && (
+            <PostContent nickname={post.User.nickname}>
+              {post.content}
+            </PostContent>
+          )}
+          {post.Images?.length === 0 && post.content?.length === 0 && <Empty />}
         </PostContentBox>
         <CardFooter>
           <RowBox>
@@ -93,7 +106,7 @@ const PostCard = ({ post }) => {
       </StyledCard>
       {commentFormOpened && (
         <>
-          <CommentCard post={post} />
+          <CommentCard post={post} user={UserID} />
         </>
       )}
     </CardWrapper>

@@ -117,7 +117,7 @@ html, #root {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 } 
 
-body{
+body {
   background-color: #fafafa;
   position: relative;
   display: block;
@@ -160,7 +160,12 @@ body{
 }
 
 .ant-empty {
-  margin: 30px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.ant-comment-content-author {
+  font-weight: 600;
 }
 
 .focusedLabel {

@@ -56,12 +56,9 @@ const Headerbox = styled.nav`
   align-items: center;
   padding: 0px 40px;
   margin: 0 auto;
-  ${media.tablet`
-    padding: 0px 60px;
-  `}
   ${media.desktop`
-    width: 1200px;
-    padding: 0px 60px;
+    width: 1280px;
+    padding: 0px;
   `}
 `;
 

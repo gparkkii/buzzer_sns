@@ -31,7 +31,11 @@ const CommentForm = ({ post }) => {
     console.log('Comment :', comment);
     console.log('UserID :', UserID);
     dispatch(
-      addCommentAction({ userId: UserID, postId: post.id, content: comment }),
+      addCommentAction({
+        userId: UserID,
+        postId: post.id,
+        comment: comment.comment,
+      }),
     );
     reset();
   }, []);

@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { PropTypes } from 'prop-types';
+import { removeCommentAction } from 'module/reducers/post';
 import { Comment, List, Empty } from 'antd';
 import { ListBox, StyledList } from 'styles/post';
 import Avatar from 'antd/lib/avatar/avatar';
 import CommentForm from './CommentForm';
 
-const CommentCard = ({ post }) => {
+const CommentCard = ({ post, user }) => {
+  const dispatch = useDispatch();
+
+  console.log(post.Comments);
+
+  const onRemoveComment = useCallback(commentId => {
+    console.log({ commentId, postId: post.id });
+    dispatch(removeCommentAction({ commentId, postId: post.id }));
+  }, []);
+
   return (
     <ListBox>
       <CommentForm post={post} />
@@ -21,6 +32,17 @@ const CommentCard = ({ post }) => {
                 avatar={<Avatar>{item.User.nickname[0]}</Avatar>}
                 content={item.content}
               />
+              {user === item.User.id && (
+                <button
+                  type="button"
+                  onClick={e => {
+                    e.preventDefault();
+                    onRemoveComment(item.id);
+                  }}
+                >
+                  삭제
+                </button>
+              )}
             </StyledList>
           )}
         />
